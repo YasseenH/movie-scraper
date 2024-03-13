@@ -22,7 +22,7 @@ public class Scraper {
 	public static void main(String[] args) {
 		for (int i = 0; i < LINKS.length; i++) {
 			try {
-				final Document mainDoc = Jsoup.connect(LINKS[i]).get();
+				final Document mainDoc = Jsoup.connect(LINKS[i]).timeout(20000).get();
 				
 				Elements movies = mainDoc.getElementsByClass("ipc-metadata-list-summary-item sc-10233bc-0 iherUv cli-parent");
 				
@@ -50,14 +50,13 @@ public class Scraper {
 					//Scrapes all the relevant cast members
 					Elements allCastMembers = subDoc.getElementsByClass("ipc-sub-grid ipc-sub-grid--page-span-2 ipc-sub-grid--wraps-at-above-l ipc-shoveler__grid");
 					
-					//Takes all the members all the members and confirms that they aren't blank
-					Elements indiviualCast = allCastMembers.first().getElementsByTag("a");
-					for (Element e : indiviualCast) {
-						String tempMember = e.text();
-						if (!tempMember.equals("")) {
-							cast.add(tempMember);
-						}
+					//Scrapes all the members of the cast
+					Elements allCast = allCastMembers.first().getElementsByTag("a");
+					for (int j = 1; j < allCast.size(); j+=3) {
+						cast.add(allCast.get(j).text());
 					}
+					System.out.println(cast);
+					;
 
 					//Grabs the Class that holds the film rating, year released, and duration
 					Elements tempScope = subDoc.getElementsByClass("ipc-inline-list ipc-inline-list--show-dividers sc-d8941411-2 cdJsTz baseAlt");
@@ -88,7 +87,7 @@ public class Scraper {
 						int realYear = Integer.parseInt(year);
 						double realRating = Double.parseDouble(fanRating);
 						Movie newMovie = new Movie(movieTitle, realYear, filmRating, realRating, duration, cast, genre, description);
-						System.out.println(newMovie.toString());
+						//System.out.println(newMovie.toString());
 						allMovies.add(newMovie);
 						sc.close();
 						duration = "";
