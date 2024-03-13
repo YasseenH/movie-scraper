@@ -64,7 +64,7 @@ public class Movie {
 		StringBuilder result = new StringBuilder();
 		result.append(CAST.get(0));
 		for (int i = 1; i < CAST.size(); i++) {
-			result.append(", ");
+			result.append(",");
 			result.append(CAST.get(i));
 		}
 		return result.toString();
@@ -84,7 +84,7 @@ public class Movie {
 	 * @return a string representation of all the movie's details
 	 */
 	public String toString() {
-		return "Title: " + this.getTitle() + "\n - Year: " + this.getReleaseYear() + "\n - Rating: " + this.getRating() + "\n - Film Rating: " + FILM_RATING
-		+ "\n - Genre: " + GENRE + "\n - Description: " + DESCRIPTION + "\n - Cast: " + getCastList() + "\n - Duration:" + DURATION + "\n";
+		return "Title: " + this.getTitle() + "\nYear: " + this.getReleaseYear() + "\nRating: " + this.getRating() + "\nFilm Rating: " + FILM_RATING
+		+ "\nGenre: " + GENRE + "\nDescription: " + DESCRIPTION + "\nCast: " + getCastList() + "\nDuration:" + DURATION + "\n";
 	}
 }

@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +10,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class Scraper {
-	private static ArrayList<Movie> allMovies = new ArrayList<>();
 	private static final String[] LINKS = {"https://m.imdb.com/chart/top/", 
 			"https://www.imdb.com/chart/moviemeter/", "https://www.imdb.com/chart/top-english-movies/?ref_=chtmvm_ql_4"};
 	private static String movieTitle = "";
@@ -19,8 +21,9 @@ public class Scraper {
 	private static String description;
 	private static ArrayList<String> cast = new ArrayList<>();
 	
-	public static void main(String[] args) {
-		for (int i = 0; i < LINKS.length; i++) {
+	public static void main(String[] args) throws FileNotFoundException {
+		PrintStream output = new PrintStream(new File("ScrapedData.txt"));
+		for (int i = 2; i < LINKS.length; i++) {
 			try {
 				final Document mainDoc = Jsoup.connect(LINKS[i]).timeout(20000).get();
 				
@@ -55,8 +58,6 @@ public class Scraper {
 					for (int j = 1; j < allCast.size(); j+=3) {
 						cast.add(allCast.get(j).text());
 					}
-					System.out.println(cast);
-					;
 
 					//Grabs the Class that holds the film rating, year released, and duration
 					Elements tempScope = subDoc.getElementsByClass("ipc-inline-list ipc-inline-list--show-dividers sc-d8941411-2 cdJsTz baseAlt");
@@ -84,11 +85,12 @@ public class Scraper {
 						while(sc.hasNext()) {
 							duration += " " + sc.next();
 						}
-						int realYear = Integer.parseInt(year);
-						double realRating = Double.parseDouble(fanRating);
-						Movie newMovie = new Movie(movieTitle, realYear, filmRating, realRating, duration, cast, genre, description);
-						//System.out.println(newMovie.toString());
-						allMovies.add(newMovie);
+						// int realYear = Integer.parseInt(year);
+						// double realRating = Double.parseDouble(fanRating);
+						// Movie newMovie = new Movie(movieTitle, realYear, filmRating, realRating, duration, cast, genre, description);
+						
+						System.out.println("Title: " + movieTitle + "\nYear: " + year + "\nRating: " + fanRating + "\nFilm Rating: " + filmRating
+						+ "\nGenre: " + genre + "\nDescription: " + description + "\nCast: " + getCast(cast) + "\nDuration:" + duration + "\n");
 						sc.close();
 						duration = "";
 						cast = new ArrayList<>();
@@ -100,6 +102,18 @@ public class Scraper {
 				ex.printStackTrace();
 			}
 		}
+		// output.close();
+	}
+	
+	//Returns a String of the cast that uses ',' to seperate names
+	private static String getCast(ArrayList<String> list) {
+		StringBuilder result = new StringBuilder();
+		result.append(list.get(0));
+		for (int i = 1; i < list.size(); i++) {
+			result.append(",");
+			result.append(list.get(i));
+		}
+		return result.toString();
 	}
 
 	//Checks to make sure the String is a rating
