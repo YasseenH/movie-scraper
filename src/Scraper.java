@@ -85,11 +85,8 @@ public class Scraper {
 						while(sc.hasNext()) {
 							duration += " " + sc.next();
 						}
-						// int realYear = Integer.parseInt(year);
-						// double realRating = Double.parseDouble(fanRating);
-						// Movie newMovie = new Movie(movieTitle, realYear, filmRating, realRating, duration, cast, genre, description);
 						
-						System.out.println("Title: " + movieTitle + "\nYear: " + year + "\nRating: " + fanRating + "\nFilm Rating: " + filmRating
+						output.println("Title: " + movieTitle + "\nYear: " + year + "\nRating: " + fanRating + "\nFilm Rating: " + filmRating
 						+ "\nGenre: " + genre + "\nDescription: " + description + "\nCast: " + getCast(cast) + "\nDuration:" + duration + "\n");
 						sc.close();
 						duration = "";
@@ -102,7 +99,7 @@ public class Scraper {
 				ex.printStackTrace();
 			}
 		}
-		// output.close();
+		output.close();
 	}
 	
 	//Returns a String of the cast that uses ',' to seperate names
