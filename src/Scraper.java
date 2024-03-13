@@ -102,6 +102,8 @@ public class Scraper {
 			}
 		}
 	}
+
+	//Checks to make sure the String is a rating
 	private static boolean isfilmRating(String rating) {
 		final int numHours = 7;
 		for (int i = 0; i < numHours; i++) {
