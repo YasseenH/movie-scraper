@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
 	private String title;
 	private int year;
 	private ArrayList<String> cast;
@@ -113,5 +113,12 @@ public class Movie {
 	public String toString() {
 		return "Title: " + this.getTitle() + "\nYear: " + this.getReleaseYear() + "\nRating: " + this.getRating() + "\nFilm Rating: " + filmRating
 		+ "\nGenre: " + genre + "\nDescription: " + description + "\nCast: " + getCastList() + "\nDuration:" + duration + "\n";
+	}
+
+	/*
+	 * Allows Movies to be comparable by the Title String
+	 */
+	public int compareTo(Movie o) {
+		return title.compareTo(o.getTitle());
 	}
 }
