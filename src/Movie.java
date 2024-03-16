@@ -48,11 +48,24 @@ public class Movie implements Comparable<Movie>{
 		sc.close();
 	}
 
+	/**
+	 * @return the genre
+	 */
+	public String getGenre() {
+		return genre;
+	}
+
+	/**
+	 * @return the film's rating
+	 */
+	public String getFilmRating() {
+		return filmRating;
+	}
 
 	/**
 	 * @return the rating
 	 */
-	public double getRating() {
+	public double getFanRating() {
 		return rating;
 	}
 	
@@ -107,11 +120,22 @@ public class Movie implements Comparable<Movie>{
 		return false;
 	}
 	
+	public int getTime(String duration) {
+		Scanner sc = new Scanner(duration);
+		int totalTime = Integer.parseInt(sc.next().substring(0, 1));
+		totalTime *= 60;
+		if (sc.hasNext()) {
+			totalTime += Integer.parseInt(sc.next().replace("m", ""));
+		}
+		sc.close();
+		return totalTime;
+	}
+
 	/**
 	 * @return a string representation of all the movie's details
 	 */
 	public String toString() {
-		return "Title: " + this.getTitle() + "\nYear: " + this.getReleaseYear() + "\nRating: " + this.getRating() + "\nFilm Rating: " + filmRating
+		return "Title: " + this.getTitle() + "\nYear: " + this.getReleaseYear() + "\nRating: " + this.getFanRating() + "\nFilm Rating: " + filmRating
 		+ "\nGenre: " + genre + "\nDescription: " + description + "\nCast: " + getCastList() + "\nDuration:" + duration + "\n";
 	}
 
