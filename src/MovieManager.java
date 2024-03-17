@@ -18,12 +18,13 @@ public class MovieManager {
                 tempEnd = sc.nextLine();
                 allDetails += "\n" + tempEnd;
             }
+            sc.nextLine();
             System.out.println(allDetails);
             Movie tempMovie = new Movie(allDetails);
             if (!movies.contains(tempMovie)) {
                 movies.add(tempMovie);
             }
-            System.out.println(allDetails);
+            System.out.println(movies);
         }
         sc.close();
     }

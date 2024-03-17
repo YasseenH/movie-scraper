@@ -11,6 +11,7 @@ public class Movie implements Comparable<Movie>{
 	private String filmRating = "";
 	private String duration;
 	
+	//TODO fix this logic of parsing the movie details paragraph
 	public Movie(String movieDetails) {
 		Scanner sc = new Scanner(movieDetails);
 		sc.next();
