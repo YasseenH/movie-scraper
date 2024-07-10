@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,11 +23,12 @@ public class Scraper {
 	private static ArrayList<String> cast = new ArrayList<>();
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		PrintStream output = new PrintStream(new File("ScrapedData.txt"));
-		for (int i = 2; i < LINKS.length; i++) {
+		//Insert File name here (Removed to prevent rewriting)
+		PrintWriter output = new PrintWriter(new File("FILENAME.csv"));
+		for (int i = 0; i < LINKS.length; i++) {
 			try {
 				final Document mainDoc = Jsoup.connect(LINKS[i]).timeout(20000).get();
-				
+				System.out.println("Connected!");
 				Elements movies = mainDoc.getElementsByClass("ipc-metadata-list-summary-item sc-10233bc-0 iherUv cli-parent");
 				
 				//Goes through all the movies on the page
@@ -37,18 +39,24 @@ public class Scraper {
 					
 					//Scrapes the title
 					movieTitle = subDoc.getElementsByClass("hero__primary-text").text();
-					
+
 					//Scrapes the rating
-					fanRating = subDoc.getElementsByClass("sc-bde20123-1 cMEQkK").first().text();
-					
+					fanRating = subDoc.getElementsByClass("sc-eb51e184-1 cxhhrI").first().text();
+
 					//Scrapes the description
-					description = subDoc.getElementsByClass("sc-466bb6c-2 chnFO").text();
+					description = subDoc.getElementsByClass("sc-2d37a7c7-2 PeLXr").text();
 					
 					//Scrapes all the genre elements and gets all if there are multiple
 					Elements genres = subDoc.getElementsByClass("ipc-chip-list__scroller");
+					StringBuilder genreBuilder = new StringBuilder();
 					for (Element e : genres) {
-						genre = e.getElementsByTag("a").text() + " ";
+						String genreText = e.getElementsByTag("a").text();
+						if (genreBuilder.length() > 0) {
+							genreBuilder.append(" ");
+						}
+						genreBuilder.append(genreText);
 					}
+					genre = genreBuilder.toString();
 
 					//Scrapes all the relevant cast members
 					Elements allCastMembers = subDoc.getElementsByClass("ipc-sub-grid ipc-sub-grid--page-span-2 ipc-sub-grid--wraps-at-above-l ipc-shoveler__grid");
@@ -86,8 +94,8 @@ public class Scraper {
 							duration += " " + sc.next();
 						}
 						
-						output.println("Title: " + movieTitle + "\nYear: " + year + "\nRating: " + fanRating + "\nFilm Rating: " + filmRating
-						+ "\nGenre: " + genre + "\nDescription: " + description + "\nCast: " + getCast(cast) + "\nDuration:" + duration + "\n");
+						output.write(movieTitle + "," + year + "," + fanRating + "," + filmRating
+						+ "," + genre + ",\"" + description + "\",\"" + getCast(cast) + "\"," + duration + "\n");
 						sc.close();
 						duration = "";
 						cast = new ArrayList<>();
@@ -98,6 +106,7 @@ public class Scraper {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
+			System.out.println("Finshed Scraping!");
 		}
 		output.close();
 	}
