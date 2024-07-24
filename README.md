@@ -1,6 +1,6 @@
-# Movie Web Scraper
+# Movie Web Scraper/Recommender
 
-Java-based application for a Movie Web Scraping project. 
+Java-based application for a Movie Web Scraping project and a Python-based application for Movie Recommendation. 
 
 The goal is to scrape movie information from websites like IMDb, organize it in a .txt and .csv files, and 
 offer users a user-friendly interface to allow the user to get a movie recommendation based on the given movie using our scraped dataset.
