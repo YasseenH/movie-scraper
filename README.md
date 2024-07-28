@@ -13,6 +13,7 @@ Learned how to:
 - Create a .csv file in Java
 - Use Pandas to manipulate a .csv file and do different functions (removing null values, adding a index column)
 - Use sklearn to create a cosine similarity matrix based on inputed text
+- Learned how to use Flask and integrate it with basic HTML and CSS files.
 #
 What's Next:
 - Implement the UI using Flask
