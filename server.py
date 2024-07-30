@@ -4,12 +4,14 @@ from recommender import get_movie_recommendation
 
 app = Flask(__name__)
 
+# Home page
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-@app.route('/recommender')
+# Recommendation page
+@app.route('/recommender', methods=['GET'])
 def show_recommendation():
     original_movie = request.args.get('movie')
     movie_recommendation = get_movie_recommendation(original_movie)
@@ -26,5 +28,6 @@ def show_recommendation():
         rec_runtime = movie_recommendation[0][7],
     )
 
+# Run the app
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port= 8000)
