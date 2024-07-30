@@ -8,10 +8,24 @@
 </head>
 <body>
     <h1>{{title}}</h1>
-    <p>Movie Name: {{rec_name}}, Genre: {{rec_genre}}, Rating:{{rec_rating}}, IMBD Review:{{rec_mpaa}}, Cast: {{rec_cast}}, Plot: {{rec_plot}}, Runtime: {{rec_runtime}}</p>
     <form action="/recommender">
         <input type="text" name="movie" id="movie" placeholder="Enter a Movie" />
         <button type="submit">Submit</button>
     </form>
+    <div class="recommendations">
+        {% for movie in recommendations %}
+        <div class="movie-card">
+            <h2>{{ movie.rec_name|title }} ({{ movie.rec_year }})</h2>
+            <div class="movie-details">
+                <p><strong>Genre:</strong> {{ movie.rec_genre }}</p>
+                <p><strong>Rating:</strong> {{ movie.rec_rating }}</p>
+                <p><strong>MPAA:</strong> {{ movie.rec_mpaa }}</p>
+                <p><strong>Cast:</strong> {{ movie.rec_cast }}</p>
+                <p><strong>Plot:</strong> {{ movie.rec_plot }}</p>
+                <p><strong>Runtime:</strong> {{ movie.rec_runtime }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

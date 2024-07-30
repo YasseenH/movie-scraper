@@ -6,27 +6,36 @@ app = Flask(__name__)
 
 # Home page
 @app.route('/')
-@app.route('/index')
 def index():
-    return render_template('index.html')
+    title = "Movie Recommender"
+    return render_template('movie.html', title=title, recommendations=[])
+
+# Capitalize title
+def capitalize_title(title):
+    return ' '.join(word.capitalize() for word in title.split())
 
 # Recommendation page
 @app.route('/recommender', methods=['GET'])
-def show_recommendation():
-    original_movie = request.args.get('movie')
-    movie_recommendation = get_movie_recommendation(original_movie)
-    return render_template(
-        "movie.html",
-        title = original_movie,
-        rec_name = movie_recommendation[0][0],
-        rec_year = movie_recommendation[0][1],
-        rec_rating = movie_recommendation[0][2],
-        rec_mpaa = movie_recommendation[0][3],
-        rec_genre = movie_recommendation[0][4],
-        rec_plot = movie_recommendation[0][5],
-        rec_cast = movie_recommendation[0][6],
-        rec_runtime = movie_recommendation[0][7],
-    )
+def recommender():
+    title = "Movie Recommender"
+    movie_name = request.args.get('movie')
+    movie_recommendation = get_movie_recommendation(movie_name)
+    
+    recommendations = [
+        {
+            'rec_name': capitalize_title(movie[0]),
+            'rec_year': movie[1],
+            'rec_rating': movie[2],
+            'rec_mpaa': movie[3],
+            'rec_genre': movie[4],
+            'rec_plot': movie[5],
+            'rec_cast': movie[6],
+            'rec_runtime': movie[7]
+        }
+        for movie in movie_recommendation
+    ]
+    
+    return render_template('movie.html', title=title, recommendations=recommendations)
 
 # Run the app
 if __name__ == "__main__":
