@@ -72,3 +72,8 @@ input, button {
 .movie-details p strong {
     font-weight: bold;
 }
+
+.movie-card-link {
+    text-decoration: none;
+    color: inherit;
+}

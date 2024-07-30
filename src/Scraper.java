@@ -94,7 +94,7 @@ public class Scraper {
 						}
 						
 						output.write(movieTitle + "," + year + "," + fanRating + "," + filmRating
-						+ "," + genre + ",\"" + description + "\",\"" + getCast(cast) + "\"," + duration + "\n");
+						+ "," + genre + ",\"" + description + "\",\"" + getCast(cast) + "\"," + duration + "," + link + "\n");
 						sc.close();
 						duration = "";
 						cast = new ArrayList<>();

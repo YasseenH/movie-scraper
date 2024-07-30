@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer 
 from sklearn.metrics.pairwise import cosine_similarity
+from imdb import IMDb
 
 # Read CSV File
 df = pd.read_csv("MoviesData.csv")
@@ -62,6 +63,7 @@ def get_movie_recommendation(movie_user_likes):
             temp.append(df[df.index == movie[0]]['plot'].values[0])
             temp.append(df[df.index == movie[0]]['actors'].values[0])
             temp.append(df[df.index == movie[0]]['runtime'].values[0])
+            temp.append(df[df.index == movie[0]]['imdb_link'].values[0])
             recommended_movies.append(temp)
 
             i += 1

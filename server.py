@@ -30,7 +30,8 @@ def recommender():
             'rec_genre': movie[4],
             'rec_plot': movie[5],
             'rec_cast': movie[6],
-            'rec_runtime': movie[7]
+            'rec_runtime': movie[7],
+            'rec_link': movie[8] 
         }
         for movie in movie_recommendation
     ]
@@ -39,4 +40,5 @@ def recommender():
 
 # Run the app
 if __name__ == "__main__":
+    print("Server is running")
     serve(app, host="0.0.0.0", port= 8000)
