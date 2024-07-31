@@ -10,7 +10,7 @@ def index():
     title = "Movie Recommender"
     return render_template('movie.html', title=title, recommendations=[])
 
-# Capitalize title
+# Capitalize title of the movie
 def capitalize_title(title):
     return ' '.join(word.capitalize() for word in title.split())
 
