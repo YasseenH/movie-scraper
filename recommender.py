@@ -1,11 +1,11 @@
-import pandas as pd
-import numpy as np
+from pandas import DataFrame as df
+from pandas import read_csv
 from sklearn.feature_extraction.text import CountVectorizer 
 from sklearn.metrics.pairwise import cosine_similarity
 from imdb import IMDb
 
 # Read CSV File
-df = pd.read_csv("MoviesData.csv")
+df = read_csv("MoviesData.csv")
 
 # Select Features
 features = ['genre', 'actors', 'imdb_rating', 'plot']
