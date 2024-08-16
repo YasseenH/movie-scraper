@@ -2,7 +2,6 @@ from pandas import DataFrame as df
 from pandas import read_csv
 from sklearn.feature_extraction.text import CountVectorizer 
 from sklearn.metrics.pairwise import cosine_similarity
-from imdb import IMDb
 
 # Read CSV File
 df = read_csv("MoviesData.csv")
