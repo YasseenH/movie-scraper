@@ -28,6 +28,8 @@ The primary objective of this project is to scrape movie details from popular we
 ## Future Enhancements
 - **Attribute-Based Recommendations:** Develop features to provide recommendations based on specific movie attributes like genre, rating, and MPAA rating.
 - **Advanced Sorting Options:** Enable users to sort recommendation results according to their preferences.
+- **Expanded Movie Dataset:** Increase the number of movies in the `.csv` file to enhance the quality and breadth of recommendations.
+- **Database Migration:** Migrate the movie dataset from a `.csv` file to a SQL database to improve data management, scalability, and query performance.
 
 Stay tuned for more updates and features!
 
@@ -81,6 +83,6 @@ To set up this project on your local machine, follow these steps:
 
 5. **Access the application:**
 
-    - Open your web browser and go to `http://127.0.0.1:5000`.
+    - Open your web browser and go to `http://127.0.0.1:8000`.
 
 That's it! You should now have the Movie Web Scraper/Recommender up and running on your local machine.
