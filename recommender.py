@@ -41,6 +41,10 @@ def get_title_from_index(index):
 def get_movie_recommendation(movie_user_likes):
     # Find the index of the movie in the dataframe (case-insensitive)
     df["title"] = df["title"].str.lower()
+
+    if movie_user_likes.lower() not in df['title'].values:
+        return []
+
     movie_index = df[df.title == movie_user_likes.lower()]["index"].values[0]
 
     # Enumerate through all the similarity scores of the movie to make a tuple of movie index and similarity scores

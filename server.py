@@ -19,7 +19,15 @@ def capitalize_title(title):
 def recommender():
     title = "Movie Recommender"
     movie_name = request.args.get('movie')
+
+    # If no movie name is provided, default to "Whiplash", my favorite movie :)
+    if not bool(movie_name.strip()):
+        movie_name = "Whiplash"
+
     movie_recommendation = get_movie_recommendation(movie_name)
+    
+    if not movie_recommendation:
+        return render_template('movie-not-found.html', title=title, recommendations=[])
     
     recommendations = [
         {
