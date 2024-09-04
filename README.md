@@ -80,6 +80,8 @@ To set up this project on your local machine, follow these steps:
         ```sh
         python server.py
         ```
+    
+    **Note if this doesn't work try using python3.
 
 5. **Access the application:**
 
