@@ -4,6 +4,9 @@ Welcome to the Movie Web Scraper/Recommender project! This repository houses a J
 
 https://github.com/user-attachments/assets/af10f19a-c097-4ba6-808f-31fd19c55540
 
+## The Story
+This project was born to solve a common problem: the struggle to find the perfect movie for a movie night. Instead of wasting time endlessly scrolling through options, users can now get personalized recommendations based on movies they already love. Using machine learning, this tool provides tailored suggestions, giving users the confidence to choose a film they’ll enjoy without the hassle. It's designed for anyone who loves movies and wants quick, reliable recommendations that match their tastes. As a user, you can simply input a movie you like and get an accurate recommendation, ensuring a great movie night every time.
+
 ## Overview
 
 The primary objective of this project is to scrape movie details from popular websites like IMDb, organize the data into .txt and .csv files, and provide a user-friendly interface for movie recommendations based on the scraped dataset.
