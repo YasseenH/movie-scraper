@@ -2,6 +2,8 @@
 
 Welcome to the Movie Web Scraper/Recommender project! This repository houses a Java-based application for web scraping movie information and a Python-based application for generating personalized movie recommendations.
 
+https://github.com/user-attachments/assets/af10f19a-c097-4ba6-808f-31fd19c55540
+
 ## Overview
 
 The primary objective of this project is to scrape movie details from popular websites like IMDb, organize the data into .txt and .csv files, and provide a user-friendly interface for movie recommendations based on the scraped dataset.
