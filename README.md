@@ -8,11 +8,11 @@ A modern web application that provides personalized movie recommendations using 
 
 ## Features
 
-- ** Smart Recommendations**: ML-powered suggestions based on movie preferences
-- ** Autocomplete Search**: Dynamic search with intelligent suggestions
-- ** Responsive Design**: Beautiful UI that works on all devices
-- ** Fast Performance**: Optimized for quick recommendations
-- ** Modern Interface**: Clean, professional design with smooth interactions
+- **Smart Recommendations**: ML-powered suggestions based on movie preferences
+- **Autocomplete Search**: Dynamic search with intelligent suggestions
+- **Responsive Design**: Beautiful UI that works on all devices
+- **Fast Performance**: Optimized for quick recommendations
+- **Modern Interface**: Clean, professional design with smooth interactions
 
 ## Live Demo
 
