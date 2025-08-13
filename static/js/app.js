@@ -10,16 +10,62 @@ function initApp() {
   setupSmoothScrolling();
   setupKeyboardNavigation();
   setupFocusManagement();
+  setupPageLoadHandling();
+}
+
+function setupPageLoadHandling() {
+  // Prevent form resubmission on page refresh
+  if (
+    window.performance &&
+    window.performance.navigation.type ===
+      window.performance.navigation.TYPE_BACK_FORWARD
+  ) {
+    // User navigated back/forward, clear any form states
+    const forms = document.querySelectorAll("form");
+    forms.forEach((form) => {
+      form.reset();
+    });
+
+    // Clear any loading states
+    const submitBtns = document.querySelectorAll('button[type="submit"]');
+    submitBtns.forEach((btn) => {
+      if (btn.disabled) {
+        btn.disabled = false;
+        btn.innerHTML = btn.getAttribute("data-original-text") || "Find Movies";
+      }
+    });
+  }
+
+  // Handle page visibility changes (when user switches tabs and comes back)
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") {
+      // User came back to the page, ensure forms are in clean state
+      const submitBtns = document.querySelectorAll('button[type="submit"]');
+      submitBtns.forEach((btn) => {
+        if (btn.disabled) {
+          btn.disabled = false;
+          btn.innerHTML =
+            btn.getAttribute("data-original-text") || "Find Movies";
+        }
+      });
+    }
+  });
 }
 
 function setupFormLoading() {
   const forms = document.querySelectorAll("form");
   forms.forEach((form) => {
-    form.addEventListener("submit", function () {
+    form.addEventListener("submit", function (e) {
       const submitBtn = this.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="loading">Searching...</span>';
+      }
+
+      // Store the search query in sessionStorage for better back button handling
+      const searchInput = this.querySelector('input[name="movie"]');
+      if (searchInput && searchInput.value.trim()) {
+        sessionStorage.setItem("lastSearchQuery", searchInput.value.trim());
       }
     });
   });
@@ -176,6 +222,38 @@ function setupFocusManagement() {
 
     searchInput.addEventListener("blur", function () {
       this.parentElement.classList.remove("focused");
+    });
+  }
+
+  // Handle browser back button and prevent form resubmission
+  if (window.history && window.history.pushState) {
+    window.addEventListener("popstate", function () {
+      // Clear any loading states when going back
+      const submitBtns = document.querySelectorAll('button[type="submit"]');
+      submitBtns.forEach((btn) => {
+        if (btn.disabled) {
+          btn.disabled = false;
+          btn.innerHTML =
+            btn.getAttribute("data-original-text") || "Find Movies";
+        }
+      });
+
+      // Restore search input value if available
+      const searchInput = document.querySelector(".search-input");
+      if (searchInput) {
+        const lastQuery = sessionStorage.getItem("lastSearchQuery");
+        if (lastQuery) {
+          searchInput.value = lastQuery;
+        }
+      }
+    });
+
+    // Store original button text to restore later
+    const submitBtns = document.querySelectorAll('button[type="submit"]');
+    submitBtns.forEach((btn) => {
+      if (!btn.getAttribute("data-original-text")) {
+        btn.setAttribute("data-original-text", btn.innerHTML);
+      }
     });
   }
 }
