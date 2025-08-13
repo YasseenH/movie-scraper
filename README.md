@@ -4,19 +4,19 @@ A modern web application that provides personalized movie recommendations using 
 
 ![MovieScraper Demo](https://github.com/user-attachments/assets/af10f19a-c097-4ba6-808f-31fd19c55540)
 
-## ✨ Features
+## Features
 
-- **🎬 Smart Recommendations**: ML-powered suggestions based on movie preferences
-- **🔍 Autocomplete Search**: Dynamic search with intelligent suggestions
-- **📱 Responsive Design**: Beautiful UI that works on all devices
-- **⚡ Fast Performance**: Optimized for quick recommendations
-- **🎨 Modern Interface**: Clean, professional design with smooth interactions
+- ** Smart Recommendations**: ML-powered suggestions based on movie preferences
+- ** Autocomplete Search**: Dynamic search with intelligent suggestions
+- ** Responsive Design**: Beautiful UI that works on all devices
+- ** Fast Performance**: Optimized for quick recommendations
+- ** Modern Interface**: Clean, professional design with smooth interactions
 
-## 🚀 Live Demo
+## Live Demo
 
-Visit the live application: [Your Render/Railway URL here]
+Visit the live application: [Live Website](https://movie-scraper-production-133f.up.railway.app)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Flask (Python)
 - **Frontend**: HTML5, CSS3, JavaScript
@@ -24,7 +24,7 @@ Visit the live application: [Your Render/Railway URL here]
 - **Server**: Waitress (WSGI)
 - **Styling**: Custom CSS with modern design system
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 MovieScraper/
@@ -41,7 +41,7 @@ MovieScraper/
     └── movie-not-found.html # Error page
 ```
 
-## 🎯 How It Works
+## How It Works
 
 1. **Input**: User searches for a movie they enjoy
 2. **Analysis**: ML algorithm analyzes genre, actors, ratings, and plot
@@ -86,4 +86,5 @@ MovieScraper/
 5. **Open your browser:**
    Navigate to `http://localhost:8000`
 
-**Made for movie lovers everywhere**
+-------------------------------------
+**Made for movie lovers everywhere!**
