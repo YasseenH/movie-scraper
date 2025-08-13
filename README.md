@@ -1,4 +1,4 @@
-# MovieScraper - AI-Powered Movie Recommendations
+# MovieScraper: ML-Powered Movie Recommendations
 
 A modern web application that provides personalized movie recommendations using machine learning. Built with Flask, scikit-learn, and a clean, responsive UI.
 
