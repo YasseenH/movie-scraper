@@ -1,33 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title }}</title>
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <form action="/recommender">
-        <input type="text" name="movie" id="movie" placeholder="Enter a Movie" />
-        <button type="submit">Submit</button>
-    </form>
-    <div class="recommendations">
-        {% for movie in recommendations %}
-        <a href="{{ movie.rec_link }}" target="_blank" class="movie-card-link">
-            <div class="movie-card">
-                <h2>{{ movie.rec_name|title }} ({{ movie.rec_year }})</h2>
-                <div class="movie-details">
-                    <p><strong>Genre:</strong> {{ movie.rec_genre }}</p>
-                    <p><strong>Rating:</strong> {{ movie.rec_rating }}/10</p>
-                    <p><strong>MPAA:</strong> {{ movie.rec_mpaa }}</p>
-                    <p><strong>Cast:</strong> {{ movie.rec_cast }}</p>
-                    <p><strong>Plot:</strong> {{ movie.rec_plot }}</p>
-                    <p><strong>Runtime:</strong> {{ movie.rec_runtime }}</p>
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <a href="/" class="logo">MovieScraper</a>
+          <ul class="nav-links">
+            <li>
+              <a
+                href="/"
+                class="nav-link {% if request.endpoint == 'index' %}active{% endif %}"
+                >Home</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <section class="hero">
+          <h1>Discover Your Next Favorite Movie</h1>
+          <p>
+            Get personalized movie recommendations based on films you love. Our
+            AI-powered system analyzes genres, actors, ratings, and plots to
+            find perfect matches.
+          </p>
+        </section>
+
+        <section class="search-section">
+          <form action="/recommender" class="search-form" method="GET">
+            <input
+              type="text"
+              name="movie"
+              id="movie"
+              class="search-input"
+              placeholder="Enter a movie title (e.g., Whiplash, Inception, The Shawshank Redemption)"
+              value="{{ request.args.get('movie', '') }}"
+              required
+              aria-label="Movie title to search for"
+            />
+            <button type="submit" class="search-button">🔍 Find Movies</button>
+          </form>
+        </section>
+
+        {% if recommendations %}
+        <section class="recommendations">
+          <div class="recommendations-header">
+            <h2>Recommended Movies</h2>
+            <p>
+              Based on your search for "{{ request.args.get('movie', 'Whiplash')
+              }}"
+            </p>
+          </div>
+
+          <div class="movie-grid">
+            {% for movie in recommendations %}
+            <a
+              href="{{ movie.rec_link }}"
+              target="_blank"
+              class="movie-card-link"
+              rel="noopener noreferrer"
+            >
+              <article class="movie-card">
+                <div class="movie-header">
+                  <h3 class="movie-title">{{ movie.rec_name }}</h3>
+                  <span class="movie-year">{{ movie.rec_year }}</span>
                 </div>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-</body>
+
+                <div class="movie-details">
+                  <div class="movie-detail">
+                    <span class="movie-detail-label">Genre</span>
+                    <span class="movie-detail-value"
+                      >{{ movie.rec_genre }}</span
+                    >
+                  </div>
+
+                  <div class="movie-detail">
+                    <span class="movie-detail-label">Rating</span>
+                    <span class="movie-detail-value"
+                      >⭐ {{ movie.rec_rating }}/10</span
+                    >
+                  </div>
+
+                  <div class="movie-detail">
+                    <span class="movie-detail-label">MPAA</span>
+                    <span class="movie-detail-value">{{ movie.rec_mpaa }}</span>
+                  </div>
+
+                  <div class="movie-detail">
+                    <span class="movie-detail-label">Runtime</span>
+                    <span class="movie-detail-value"
+                      >{{ movie.rec_runtime }}</span
+                    >
+                  </div>
+
+                  <div class="movie-detail">
+                    <span class="movie-detail-label">Cast</span>
+                    <span class="movie-detail-value">{{ movie.rec_cast }}</span>
+                  </div>
+                </div>
+
+                <div class="movie-plot">
+                  <div class="movie-detail">
+                    <span class="movie-detail-label">Plot</span>
+                    <span class="movie-detail-value">{{ movie.rec_plot }}</span>
+                  </div>
+                </div>
+              </article>
+            </a>
+            {% endfor %}
+          </div>
+        </section>
+        {% else %}
+        <section class="recommendations">
+          <div class="recommendations-header">
+            <h2>Limited Recommendations</h2>
+            <p>
+              We found "{{ request.args.get('movie', 'Whiplash') }}" but
+              couldn't generate enough similar movies. Try searching for a
+              different film!
+            </p>
+          </div>
+        </section>
+        {% endif %}
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-center">Made for movie lovers everywhere</p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
 </html>

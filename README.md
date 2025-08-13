@@ -1,95 +1,89 @@
-# Movie Web Scraper/Recommender
+# MovieScraper - AI-Powered Movie Recommendations
 
-Welcome to the Movie Web Scraper/Recommender project! This repository houses a Java-based application for web scraping movie information and a Python-based application for generating personalized movie recommendations.
+A modern web application that provides personalized movie recommendations using machine learning. Built with Flask, scikit-learn, and a clean, responsive UI.
 
-https://github.com/user-attachments/assets/af10f19a-c097-4ba6-808f-31fd19c55540
+![MovieScraper Demo](https://github.com/user-attachments/assets/af10f19a-c097-4ba6-808f-31fd19c55540)
 
-## The Story
-This project was born to solve a common problem: the struggle to find the perfect movie for a movie night. Instead of wasting time endlessly scrolling through options, users can now get personalized recommendations based on movies they already love. Using machine learning, this tool provides tailored suggestions, giving users the confidence to choose a film they’ll enjoy without the hassle. It's designed for anyone who loves movies and wants quick, reliable recommendations that match their tastes. As a user, you can simply input a movie you like and get an accurate recommendation, ensuring a great movie night every time.
+## ✨ Features
 
-## Overview
+- **🎬 Smart Recommendations**: ML-powered suggestions based on movie preferences
+- **🔍 Autocomplete Search**: Dynamic search with intelligent suggestions
+- **📱 Responsive Design**: Beautiful UI that works on all devices
+- **⚡ Fast Performance**: Optimized for quick recommendations
+- **🎨 Modern Interface**: Clean, professional design with smooth interactions
 
-The primary objective of this project is to scrape movie details from popular websites like IMDb, organize the data into .txt and .csv files, and provide a user-friendly interface for movie recommendations based on the scraped dataset.
+## 🚀 Live Demo
 
-## Features
+Visit the live application: [Your Render/Railway URL here]
 
-### Web Scraping (Java)
-- **HTML & CSS Parsing:** Learn how to read and interpret HTML and CSS tags.
-- **Data Extraction:** Utilize loops and conditionals to parse repetitive elements and extract specific data using tags, IDs, and classes.
-- **CSV Creation:** Generate .csv files to store the scraped data efficiently.
+## 🛠️ Tech Stack
 
-### Data Handling & Recommendation (Python)
-- **Data Manipulation with Pandas:** Clean and process the scraped data by removing null values and adding index columns.
-- **Cosine Similarity for Recommendations:** Employ sklearn to create a cosine similarity matrix for text-based movie recommendations.
-- **Web Interface with Flask:** Build a dynamic web interface using Flask, integrating basic HTML and CSS files with Jinja2 templates.
+- **Backend**: Flask (Python)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Machine Learning**: scikit-learn, pandas
+- **Server**: Waitress (WSGI)
+- **Styling**: Custom CSS with modern design system
 
-## Project Learnings
-- Effective HTML and CSS parsing techniques
-- Advanced data extraction and sorting methods
-- Comprehensive CSV file creation and manipulation
-- Implementation of recommendation algorithms using cosine similarity
-- Building dynamic web applications with Flask and Jinja2
+## 📁 Project Structure
 
-## Future Enhancements
-- **Attribute-Based Recommendations:** Develop features to provide recommendations based on specific movie attributes like genre, rating, and MPAA rating.
-- **Advanced Sorting Options:** Enable users to sort recommendation results according to their preferences.
-- **Expanded Movie Dataset:** Increase the number of movies in the `.csv` file to enhance the quality and breadth of recommendations.
-- **Database Migration:** Migrate the movie dataset from a `.csv` file to a SQL database to improve data management, scalability, and query performance.
+```
+MovieScraper/
+├── server.py              # Flask application
+├── recommender.py         # ML recommendation engine
+├── MoviesData.csv         # Movie dataset
+├── requirements.txt       # Python dependencies
+├── static/
+│   ├── css/style.css     # Main stylesheet
+│   └── js/app.js         # Frontend JavaScript
+└── templates/
+    ├── index.html         # Home page
+    ├── movie.html         # Results page
+    └── movie-not-found.html # Error page
+```
 
-Stay tuned for more updates and features!
+## 🎯 How It Works
 
-## Installation
+1. **Input**: User searches for a movie they enjoy
+2. **Analysis**: ML algorithm analyzes genre, actors, ratings, and plot
+3. **Recommendations**: System finds similar movies using cosine similarity
+4. **Results**: Clean, organized display of movie suggestions
 
-To set up this project on your local machine, follow these steps:
+## Quick Start
 
 ### Prerequisites
 
-- Java Development Kit (JDK)
-- Python 3.6 or higher
+- Python 3.8 or higher
 - pip (Python package installer)
 
-### Steps
+### Installation
 
 1. **Clone the repository:**
 
-    ```sh
-    git clone https://github.com/yourusername/moviewebscraper-recommender.git
-    cd moviewebscraper-recommender
-    ```
+   ```bash
+   git clone https://github.com/yourusername/moviewebscraper-recommender.git
+   cd moviewebscraper-recommender
+   ```
 
-2. **Set up the Java environment: (Optional)**
+2. **Set up virtual environment:**
 
-    - Make sure you have the JDK installed.
-    - Compile the Java files (if you want to re-scrape the data, make sure to input the file's name).
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-3. **Set up the Python environment:**
+3. **Install dependencies:**
 
-    - It's recommended to use a virtual environment to avoid conflicts with other packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-        ```sh
-        python3 -m venv venv
-        source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-        ```
+4. **Run the application:**
 
-    - Install the required Python packages:
+   ```bash
+   python server.py
+   ```
 
-        ```sh
-        pip install -r requirements.txt
-        ```
+5. **Open your browser:**
+   Navigate to `http://localhost:8000`
 
-4. **Run the scraper and the recommender system:**
-
-    - Execute the Java scraper to generate the movie dataset. (Optional)
-    - Run the Flask server:
-
-        ```sh
-        python server.py
-        ```
-    
-    **Note if this doesn't work try using python3.
-
-5. **Access the application:**
-
-    - Open your web browser and go to `http://127.0.0.1:8000`.
-
-That's it! You should now have the Movie Web Scraper/Recommender up and running on your local machine.
+**Made for movie lovers everywhere**

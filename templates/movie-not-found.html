@@ -3,23 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Not Found</title>
+    <title>Movie Not Found - MovieScraper</title>
     <link
       href="{{ url_for('static', filename='css/style.css') }}"
       rel="stylesheet"
     />
   </head>
   <body>
-    <h1>Movie Not Found</h1>
-    <h2>Please try again</h2>
-    <form action="/recommender">
-      <input type="text" name="movie" id="movie" placeholder="Enter a Movie" />
-      <button type="submit">Submit</button>
-    </form>
-    <h5>
-      <span style="display: block; text-align: center;">We couldn't find the movie you were looking for, but we're actively
-        expanding our database. <br> Stay tuned—we hope to have this movie available
-        in the future!</span>
-    </h5>
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <a href="/" class="logo">MovieScraper</a>
+          <ul class="nav-links">
+            <li><a href="/" class="nav-link">Home</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <section class="error-section">
+          <div class="error-icon">🎬</div>
+          <h1 class="error-title">Movie Not Found</h1>
+          <p class="error-message">
+            We couldn't find "{{ request.args.get('movie', 'the movie') }}" in
+            our database, but we're actively expanding our collection. Try
+            searching for another movie, or check out some popular options
+            below!
+          </p>
+
+          <form action="/recommender" class="search-form" method="GET">
+            <input
+              type="text"
+              name="movie"
+              id="movie"
+              class="search-input"
+              placeholder="Try another movie title..."
+              required
+              aria-label="Movie title to search for"
+            />
+            <button type="submit" class="search-button">Search Again</button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-center">Made for movie lovers everywhere</p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   </body>
 </html>
