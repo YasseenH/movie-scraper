@@ -68,9 +68,37 @@ function setupSearchSuggestions() {
       return;
     }
 
+    const searchValue = value.toLowerCase().trim();
+
+    // Better filtering: prioritize exact matches and starts-with matches
     const filtered = movieTitles
-      .filter((title) => title.toLowerCase().includes(value.toLowerCase()))
-      .slice(0, 2);
+      .filter((title) => {
+        const titleLower = title.toLowerCase();
+        // First priority: titles that start with the search value
+        if (titleLower.startsWith(searchValue)) {
+          return true;
+        }
+        // Second priority: titles that contain the search value
+        if (titleLower.includes(searchValue)) {
+          return true;
+        }
+        return false;
+      })
+      .sort((a, b) => {
+        const aLower = a.toLowerCase();
+        const bLower = b.toLowerCase();
+
+        // Sort by relevance: starts-with first, then contains
+        const aStartsWith = aLower.startsWith(searchValue);
+        const bStartsWith = bLower.startsWith(searchValue);
+
+        if (aStartsWith && !bStartsWith) return -1;
+        if (!aStartsWith && bStartsWith) return 1;
+
+        // If both have same priority, sort alphabetically
+        return aLower.localeCompare(bLower);
+      })
+      .slice(0, 3);
 
     if (filtered.length > 0) {
       suggestionsContainer.innerHTML = filtered
@@ -83,11 +111,17 @@ function setupSearchSuggestions() {
   }
 
   searchInput.addEventListener("input", function () {
-    filterAndShowSuggestions(this.value);
+    // Only show suggestions for meaningful input (at least 2 characters)
+    if (this.value.trim().length >= 2) {
+      filterAndShowSuggestions(this.value);
+    } else {
+      suggestionsContainer.style.display = "none";
+    }
   });
 
   searchInput.addEventListener("focus", function () {
-    if (this.value.length > 0) {
+    // Only show suggestions if there's meaningful input (at least 2 characters)
+    if (this.value.trim().length >= 2) {
       filterAndShowSuggestions(this.value);
     }
   });
