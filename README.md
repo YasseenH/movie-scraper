@@ -2,7 +2,9 @@
 
 A modern web application that provides personalized movie recommendations using machine learning. Built with Flask, scikit-learn, and a clean, responsive UI.
 
-![MovieScraper Demo](https://github.com/user-attachments/assets/af10f19a-c097-4ba6-808f-31fd19c55540)
+![MovieScraper Demo](https://github.com/user-attachments/assets/439062ca-7c9c-499c-b5c7-d28d1b1ab239)
+
+
 
 ## Features
 
